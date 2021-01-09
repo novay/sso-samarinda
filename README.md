@@ -4,9 +4,6 @@
 [![Total Downloads](https://poser.pugx.org/novay/sso-client/downloads)](https://packagist.org/packages/novay/sso-client)
 [![Latest Unstable Version](https://poser.pugx.org/novay/sso-client/v/unstable)](https://packagist.org/packages/novay/sso-client)
 [![License](https://poser.pugx.org/novay/sso-client/license)](https://packagist.org/packages/novay/sso-client)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/novay/sso-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/novay/sso-client/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/novay/sso-client/badges/build.png?b=master)](https://scrutinizer-ci.com/g/novay/sso-client/build-status/master)
-[![Code Intelligence Status](https://scrutinizer-ci.com/g/novay/sso-client/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
