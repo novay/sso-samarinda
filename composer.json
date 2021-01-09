@@ -1,0 +1,35 @@
+{
+    "name": "novay/sso-client",
+    "description": "SSO integration for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Noviyanto Rahmadi",
+            "email": "novay@enterwind.com"
+        }, 
+        {
+            "name": "Martynas Žaliaduonis",
+            "email": "m.zaliaduonis@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.3", 
+        "zefy/php-simple-sso": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novay\\SSO\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novay\\SSO\\SSOServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
