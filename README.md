@@ -174,7 +174,7 @@ protected function attemptLogin(Request $request)
     $broker = new \Novay\SSO\Services\Broker;
     
     $credentials = $this->credentials($request);
-    return $broker->login($credentials[$this->username()], $credentials['password']);
+    return $broker->login($credentials['username'], $credentials['password']);
 }
 
 public function logout(Request $request)
