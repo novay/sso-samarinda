@@ -98,7 +98,62 @@ protected $middlewareGroups = [
 ];
 ```
 
-Apabila 
+Apabila dalam implementasinya Anda ingin melakukan penyimpanan sesi atau melakukan manipulasi pada models **User**, Anda juga bisa melakukan custom pada middleware yang telah disediakan. Contohnya:
+
+a) Buat Middleware Baru
+
+```shell
+$ php artisan make:middleware SSOAutoLogin
+```
+
+b) Extend **Default Middleware** ke **Custom Middleware**
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Novay\SSO\Http\Middleware\SSOAutoLogin as Middleware;
+use App\Models\User;
+
+class SSOAutoLogin extends Middleware
+{
+    /**
+     * Manage your users models as your default credentials
+     *
+     * @param Broker $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleLogin($response)
+    {
+        $user = User::updateOrCreate(['uid' => $response['data']['id']], [
+            'name' => $response['data']['name'], 
+            'email' => $response['data']['email'], 
+            'password' => 'default', 
+        ]);
+
+        auth()->login($user);
+
+        return;
+    }
+}
+```
+
+c) Edit **Kernel.php**
+
+```php
+protected $middlewareGroups = [
+    'web' => [
+        ...
+        // \Novay\SSO\Http\Middleware\SSOAutoLogin::class,
+        \App\Http\Middleware\SSOAutoLogin::class,
+    ],
+
+    'api' => [
+        ...
+    ],
+];
+```
 
 #### 5. Usage
 
