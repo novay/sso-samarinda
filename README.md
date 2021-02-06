@@ -193,7 +193,7 @@ Demikian. Untuk halaman Broker lain Anda harus mengulang semuanya dari awal hany
 
 Contoh tambahan pada file `.env`:
 ```shell
-SSO_SERVER_URL=https://samarindakota.go.id
+SSO_SERVER_URL=https://sso.samarindakota.go.id
 SSO_BROKER_NAME=Situsku
-SSO_BROKER_SECRET=XXXXX
+SSO_BROKER_SECRET=XXXXXXXXXXXXXXXX
 ```
