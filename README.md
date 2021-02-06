@@ -25,7 +25,7 @@ $ composer require novay/sso-client
 
 Salin file config ke dalam folder `config/` pada projek Laravel Anda.
 ```shell
-$ php artisan vendor:publish --provider="Novay\SSO\SSOServiceProvider"
+$ php artisan vendor:publish --provider="Novay\SSO\Providers\SSOServiceProvider"
 ``` 
 
 Buat 3 opsi baru di dalam file `.env` Anda:
@@ -36,12 +36,12 @@ SSO_BROKER_SECRET=
 ```
 `SSO_SERVER_URL` berisi URI dari SSO Samarinda. `SSO_BROKER_NAME` dan `SSO_BROKER_SECRET` harus diisi sesuai dengan data aplikasi yang didaftarkan di https://sso.samarindakota.go.id.
 
-Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
+Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
 ```php
 protected $middlewareGroups = [
 	'web' => [
 		...
-	    \Novay\SSO\Middleware\SSOAutoLogin::class,
+	    \Novay\SSO\Http\Middleware\SSOAutoLogin::class,
 	],
 
 	'api' => [
@@ -54,7 +54,7 @@ Last but not least, you need to edit `app/Http/Controllers/Auth/LoginController.
 ```php
 protected function attemptLogin(Request $request)
 {
-    $broker = new \Novay\SSO\Broker;
+    $broker = new \Novay\SSO\Services\Broker;
     
     $credentials = $this->credentials($request);
     return $broker->login($credentials[$this->username()], $credentials['password']);
@@ -62,7 +62,7 @@ protected function attemptLogin(Request $request)
 
 public function logout(Request $request)
 {
-    $broker = new \Novay\SSO\Broker;
+    $broker = new \Novay\SSO\Services\Broker;
     
     $broker->logout();
     

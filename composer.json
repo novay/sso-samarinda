@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Novay\\SSO\\SSOServiceProvider"
+                "Novay\\SSO\\Providers\\SSOServiceProvider"
             ]
         }
     },

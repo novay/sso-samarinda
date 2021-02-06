@@ -1,6 +1,6 @@
 <?php
 
-namespace Novay\SSO\Middleware;
+namespace Novay\SSO\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

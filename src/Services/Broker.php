@@ -170,4 +170,22 @@ class Broker extends SSOBroker
         // and we need to prevent duplications.
         return 'sso_token_' . preg_replace('/[_\W]+/', '_', strtolower($this->brokerName));
     }
+
+    /**
+     * Login client to SSO server with user token.
+     *
+     * @param string $token
+     *
+     * @return bool
+     */
+    public function token(string $token)
+    {
+        $this->userInfo = $this->makeRequest('POST', 'token', compact('token'));
+
+        if (!isset($this->userInfo['error']) && isset($this->userInfo['data']['id'])) {
+            return true;
+        }
+
+        return false;
+    }
 }
