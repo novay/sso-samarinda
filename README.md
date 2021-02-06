@@ -32,7 +32,7 @@ Salin file config `sso.php` ke dalam folder `config/` pada projek Anda dengan me
 ```shell
 $ php artisan vendor:publish --provider="Novay\SSO\Providers\SSOServiceProvider"
 ``` 
-Berikut adalah ini konten default dari file konfigurasi yang disalin:
+Berikut adalah isi konten default dari file konfigurasi yang disalin:
 ```php
 //config/sso.php
 
@@ -82,7 +82,7 @@ SSO_BROKER_SECRET=
 ```
 `SSO_SERVER_URL` berisi URI dari SSO Samarinda. `SSO_BROKER_NAME` dan `SSO_BROKER_SECRET` harus diisi sesuai dengan data aplikasi yang didaftarkan di https://sso.samarindakota.go.id.
 
-4. Register Middleware
+#### 4. Register Middleware
 
 Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
 ```php
@@ -102,8 +102,17 @@ Apabila
 
 #### 5. Usage
 
+a) Login
 
+```html
+<a href="{{ route('sso.authorize') }}">Login</a>
+```
 
+b) Logout
+
+```html
+<a href="{{ route('sso.logout') }}">Logout</a>
+```
 
 Untuk penggunaan secara manual, Anda bisa menyisipkan potongan script berikut kedalam fungsi login dan logout pada class controller Anda.
 ```php
