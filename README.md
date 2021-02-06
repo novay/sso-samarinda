@@ -1,4 +1,4 @@
-# Simple PHP SSO integration for Laravel
+# Integrasi SSO-Samarinda menggunakan Laravel
 
 [![Latest Stable Version](https://poser.pugx.org/novay/sso-client/v/stable)](https://packagist.org/packages/novay/sso-client)
 [![Total Downloads](https://poser.pugx.org/novay/sso-client/downloads)](https://packagist.org/packages/novay/sso-client)
@@ -7,7 +7,7 @@
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-This package based on [Simple PHP SSO skeleton](https://github.com/zefy/php-simple-sso) package and made suitable for Laravel framework.
+Package ini berbasis pada [Simple PHP SSO skeleton](https://github.com/zefy/php-simple-sso) dan dibuat khusus agar dapat berjalan dan digunakan di framework Laravel.
 
 ### Requirements
 * Laravel 5.5+
@@ -18,7 +18,8 @@ Client visits Broker and unique token is generated. When new token is generated 
 
 # Installation
 
-1. Install Package
+####1. Install Package
+
 Install package ini menggunakan composer.
 ```shell
 $ composer require novay/sso-client
@@ -26,13 +27,13 @@ $ composer require novay/sso-client
 Package ini otomatis akan mendaftarkan service provider kedalam aplikasi Anda.
 
 2. Publish Vendor
+
 Salin file config `sso.php` ke dalam folder `config/` pada projek Anda dengan menjalankan:
 ```shell
 $ php artisan vendor:publish --provider="Novay\SSO\Providers\SSOServiceProvider"
 ``` 
 Berikut adalah ini konten default dari file konfigurasi yang disalin:
 ```php
-<?php
 //config/sso.php
 
 return [
@@ -72,6 +73,7 @@ return [
 ```
 
 3. Edit Environment
+
 Buat 3 opsi baru dalam file `.env` Anda:
 ```shell
 SSO_SERVER_URL=https://sso.samarindakota.go.id
@@ -81,6 +83,7 @@ SSO_BROKER_SECRET=
 `SSO_SERVER_URL` berisi URI dari SSO Samarinda. `SSO_BROKER_NAME` dan `SSO_BROKER_SECRET` harus diisi sesuai dengan data aplikasi yang didaftarkan di https://sso.samarindakota.go.id.
 
 4. Register Middleware
+
 Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
 ```php
 protected $middlewareGroups = [
@@ -98,6 +101,7 @@ protected $middlewareGroups = [
 Apabila 
 
 5. Usage
+
 
 
 
