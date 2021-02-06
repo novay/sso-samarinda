@@ -55,16 +55,20 @@ class OAuthController extends Controller
     {
     	$broker = new \Novay\SSO\Services\Broker;
 
-    	if($broker->login(base64_decode($request->uid), base64_decode($request->pwd))) {
-    		$request->session()->regenerate();
+    	if($request->filled('code') && $request->filled('uid') && $request->filled('pwd')) {
+            if($broker->login(base64_decode($request->uid), base64_decode($request->pwd))) {
+                $request->session()->regenerate();
 
-        	return redirect()->to($this->redirectTo);
-    	}
+                return redirect()->to($this->redirectTo);
+            }
+        }
 
-        if($broker->token($request->code)) {
-            $request->session()->regenerate();
+        if($request->filled('code') && !$request->filled('uid') && !$request->filled('pwd')) {
+            if($broker->token($request->code)) {
+                $request->session()->regenerate();
 
-            return redirect()->to($this->redirectTo);
+                return redirect()->to($this->redirectTo);
+            }
         }
 
         return response()->json([
