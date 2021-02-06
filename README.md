@@ -18,17 +18,61 @@ Client visits Broker and unique token is generated. When new token is generated 
 
 # Installation
 
+1. Install Package
 Install package ini menggunakan composer.
 ```shell
 $ composer require novay/sso-client
 ```
+Package ini otomatis akan mendaftarkan service provider kedalam aplikasi Anda.
 
-Salin file config ke dalam folder `config/` pada projek Laravel Anda.
+2. Publish Vendor
+Salin file config `sso.php` ke dalam folder `config/` pada projek Anda dengan menjalankan:
 ```shell
 $ php artisan vendor:publish --provider="Novay\SSO\Providers\SSOServiceProvider"
 ``` 
+Berikut adalah ini konten default dari file konfigurasi yang disalin:
+```php
+<?php
+//config/sso.php
 
-Buat 3 opsi baru di dalam file `.env` Anda:
+return [
+    'name' => 'Single Sign On - Broker (Client)', 
+    'version' => '1.0.0', 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect to ???
+    |--------------------------------------------------------------------------
+    | Arahkan kemana Anda akan tuju setelah login berhasil
+    |
+    */
+    'redirect_to' => '/home', 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Konfigurasi auth.php
+    |--------------------------------------------------------------------------
+    | Pilih guard auth default yang dipakai
+    |
+    */
+    'guard' => 'web', 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pengaturan Umum untuk Broker
+    |--------------------------------------------------------------------------
+    | Beberapa parameter yang dibutuhkan untuk broker. Bisa ditemukan di
+    | https://sso.samarindakota.go.id
+    |
+    */
+    'server_url' => env('SSO_SERVER_URL', null),
+    'broker_name' => env('SSO_BROKER_NAME', null),
+    'broker_secret' => env('SSO_BROKER_SECRET', null),
+];
+```
+
+3. Edit Environment
+Buat 3 opsi baru dalam file `.env` Anda:
 ```shell
 SSO_SERVER_URL=https://sso.samarindakota.go.id
 SSO_BROKER_NAME=
@@ -36,6 +80,7 @@ SSO_BROKER_SECRET=
 ```
 `SSO_SERVER_URL` berisi URI dari SSO Samarinda. `SSO_BROKER_NAME` dan `SSO_BROKER_SECRET` harus diisi sesuai dengan data aplikasi yang didaftarkan di https://sso.samarindakota.go.id.
 
+4. Register Middleware
 Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
 ```php
 protected $middlewareGroups = [
@@ -50,7 +95,13 @@ protected $middlewareGroups = [
 ];
 ```
 
-Last but not least, you need to edit `app/Http/Controllers/Auth/LoginController.php`. You should add two functions into `LoginController` class which will authenticate your client through SSO server but not your Broker page.
+Apabila 
+
+5. Usage
+
+
+
+Untuk penggunaan secara manual, Anda bisa menyisipkan potongan script berikut kedalam fungsi login dan logout pada class controller Anda.
 ```php
 protected function attemptLogin(Request $request)
 {
@@ -74,11 +125,11 @@ public function logout(Request $request)
 }
 ```
 
-That's all. For other Broker pages you should repeat everything from the beginning just changing your Broker name and secret in configuration file.
+Demikian. Untuk halaman Broker lain Anda harus mengulang semuanya dari awal hanya dengan mengubah nama dan secret Broker Anda di file konfigurasi.
 
-Example `.env` options:
+Contoh tambahan pada file `.env`:
 ```shell
-SSO_SERVER_URL=https://server.test
-SSO_BROKER_NAME=site1
-SSO_BROKER_SECRET=892asjdajsdksja74jh38kljk2929023
+SSO_SERVER_URL=https://samarindakota.go.id
+SSO_BROKER_NAME=Situsku
+SSO_BROKER_SECRET=XXXXX
 ```
