@@ -197,3 +197,11 @@ SSO_SERVER_URL=https://sso.samarindakota.go.id
 SSO_BROKER_NAME=Situsku
 SSO_BROKER_SECRET=XXXXXXXXXXXXXXXX
 ```
+
+### Credit
+* [Pemerintah Kota Samarinda](https://samarindakota.go.id).
+* [Dinas Komunikasi dan Informatika Kota Samarinda](https://diskominfo.samarindakota.go.id).
+* Bidang Aplikasi dan Layanan E-Government (Bidang 4)
+
+### License
+SSO-Samarinda for Laravel is licensed under the MIT license for both personal and commercial products. Enjoy!
