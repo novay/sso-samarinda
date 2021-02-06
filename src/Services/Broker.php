@@ -116,8 +116,8 @@ class Broker extends SSOBroker
                 break;
         }
 
-        // $client = new GuzzleHttp\Client;
-        $client = new GuzzleHttp\Client(['verify' => false ]);
+        $client = new GuzzleHttp\Client;
+        // $client = new GuzzleHttp\Client(['verify' => false]);
         $response = $client->request($method, $commandUrl, $body + ['headers' => $headers]);
 
         return json_decode($response->getBody(), true);

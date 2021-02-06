@@ -33,10 +33,21 @@ class SSOAutoLogin
         // If client is logged in SSO server and didn't logged in broker...
         if (isset($response['data']) && (auth()->guest() || auth()->user()->id != $response['data']['id'])) {
             // ... we will authenticate our client.
-            auth()->loginUsingId($response['data']['id']);
+            $this->handleLogin($response);
         }
 
         return $next($request);
+    }
+
+    /**
+     * Manage your users models as your default credentials
+     *
+     * @param Broker $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleLogin($response)
+    {
+        // 
     }
 
     /**
