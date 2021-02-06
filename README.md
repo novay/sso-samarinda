@@ -26,7 +26,7 @@ $ composer require novay/sso-client
 ```
 Package ini otomatis akan mendaftarkan service provider kedalam aplikasi Anda.
 
-2. Publish Vendor
+#### 2. Publish Vendor
 
 Salin file config `sso.php` ke dalam folder `config/` pada projek Anda dengan menjalankan:
 ```shell
@@ -72,7 +72,7 @@ return [
 ];
 ```
 
-3. Edit Environment
+#### 3. Edit Environment
 
 Buat 3 opsi baru dalam file `.env` Anda:
 ```shell
@@ -100,7 +100,7 @@ protected $middlewareGroups = [
 
 Apabila 
 
-5. Usage
+#### 5. Usage
 
 
 
