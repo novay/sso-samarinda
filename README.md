@@ -5,8 +5,6 @@
 [![Latest Unstable Version](https://poser.pugx.org/novay/sso-client/v/unstable)](https://packagist.org/packages/novay/sso-client)
 [![License](https://poser.pugx.org/novay/sso-client/license)](https://packagist.org/packages/novay/sso-client)
 
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 Package ini berbasis pada [Simple PHP SSO skeleton](https://github.com/zefy/php-simple-sso) dan dibuat khusus agar dapat berjalan dan digunakan di framework Laravel.
 
 ### Requirements
