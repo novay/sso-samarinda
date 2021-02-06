@@ -53,7 +53,7 @@ class OAuthController extends Controller
      */
     public function callback(Request $request)
     {
-    	$broker = new \Modules\SSO\Services\Broker;
+    	$broker = new \Novay\SSO\Services\Broker;
 
     	if($broker->login(base64_decode($request->uid), base64_decode($request->pwd))) {
     		$request->session()->regenerate();
@@ -81,7 +81,7 @@ class OAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $broker = new \Modules\SSO\Services\Broker;
+        $broker = new \Novay\SSO\Services\Broker;
         $broker->logout();
         
         $this->guard()->logout();
