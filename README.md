@@ -82,7 +82,7 @@ SSO_BROKER_SECRET=
 
 #### 4. Register Middleware
 
-Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke gurp `web` middleware. Contohnya seperti ini:
+Edit file `app/Http/Kernel.php` dan tambahkan `\Novay\SSO\Http\Middleware\SSOAutoLogin::class` ke grup `web` middleware. Contohnya seperti ini:
 ```php
 protected $middlewareGroups = [
 	'web' => [
@@ -180,11 +180,9 @@ protected function attemptLogin(Request $request)
 public function logout(Request $request)
 {
     $broker = new \Novay\SSO\Services\Broker;
-    
     $broker->logout();
     
     $this->guard()->logout();
-    
     $request->session()->invalidate();
     
     return redirect('/');
