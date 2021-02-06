@@ -1,6 +1,6 @@
 <?php
 
-Route::prefix('oauth/sso')->namespace('Novay\\SSO\\Http\\Controllers')->group(function() 
+Route::prefix('oauth/sso')->namespace('Novay\\SSO\\Http\\Controllers')->middleware('web')->group(function() 
 {
 	Route::get('authorize', 'OAuthController@login')->name('sso.authorize');
 	Route::get('callback', 'OAuthController@callback');
