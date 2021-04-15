@@ -167,6 +167,8 @@ b) Logout
 <a href="{{ route('sso.logout') }}">Logout</a>
 ```
 
+c) Manual Usage (Optional)
+
 Untuk penggunaan secara manual, Anda bisa menyisipkan potongan script berikut kedalam fungsi login dan logout pada class controller Anda.
 ```php
 protected function attemptLogin(Request $request)
