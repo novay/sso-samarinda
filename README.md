@@ -16,6 +16,8 @@ Teknologi Single-sign-on (sering disingkat menjadi SSO) adalah teknologi yang me
 ### How it works?
 Client visits Broker and unique token is generated. When new token is generated we need to attach Client session to his session in Broker so he will be redirected to Server and back to Broker at this moment new session in Server will be created and associated with Client session in Broker's page. When Client visits other Broker same steps will be done except that when Client will be redirected to Server he already use his old session and same session id which associated with Broker#1.
 
+![flow](https://sso.samarindakota.go.id/img/flow.jpg)
+
 # Installation
 
 #### 1. Install Package
