@@ -40,7 +40,7 @@ Berikut adalah isi konten default dari file konfigurasi yang disalin:
 
 return [
     'name' => 'Single Sign On - Broker (Client)', 
-    'version' => '1.0.0', 
+    'version' => '1.0.5', 
 
     /*
     |--------------------------------------------------------------------------
@@ -71,6 +71,15 @@ return [
     'server_url' => env('SSO_SERVER_URL', null),
     'broker_name' => env('SSO_BROKER_NAME', null),
     'broker_secret' => env('SSO_BROKER_SECRET', null),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Custom for UserList
+    |--------------------------------------------------------------------------
+    | Tentukan Model User yang dipakai
+    |
+    */
+    'model' => '\App\Models\User'
 ];
 ```
 
@@ -192,6 +201,45 @@ public function logout(Request $request)
     $request->session()->invalidate();
     
     return redirect('/');
+}
+```
+
+d) Import User
+
+```html
+<a href="{{ route('sso.import', 'Service') }}">Import</a>
+```
+
+Tombol ini berfungsi untuk melakukan tarik data user guna melakukan inisiasi data user sesuai dengan tipenya. Adapun tipe yang tersedia adalah sebagai berikut:
+- Service (Khusus User Unit Kerja)
+- Guest (Khusus User Warga)
+- Officer (Khusus User ASN atau Pegawai Pemkot)
+- Company (Khusus User Perusahaan, Yayasan, Lembaga, LSM)
+
+Adapun request yang diterima adalah sebagai berikut :
+```
+{
+	...
+	{
+		'id' => 'UUID', 
+		'name',  => 'Kecamatan Palaran', 
+		'email',  => 'kec-palaran@samarindakota.go.id', 
+		'type_id',  => 'None', 
+		'number_id',  => 'XXX', 
+		'jenis',  => 'Kecamatan', 
+		'level' => 'Service', 
+	}, 	
+	...
+
+}
+```
+
+Dan response yang diterima adalah sebagai berikut :
+```
+{
+	'status' => 'success', 
+        'message' => 'Daftar pengguna ('Service') berhasil diperbarui.', 
+        'previous_url' => url()->previous()
 }
 ```
 
