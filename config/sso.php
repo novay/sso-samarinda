@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Single Sign On - Broker (Client)', 
-    'version' => '1.0.0', 
+    'version' => '1.0.1', 
 
     /*
     |--------------------------------------------------------------------------
@@ -33,4 +33,13 @@ return [
     'server_url' => env('SSO_SERVER_URL', null),
     'broker_name' => env('SSO_BROKER_NAME', null),
     'broker_secret' => env('SSO_BROKER_SECRET', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom for UserList
+    |--------------------------------------------------------------------------
+    | Tentukan Model User yang dipakai
+    |
+    */
+    'model' => '\App\Models\User'
 ];

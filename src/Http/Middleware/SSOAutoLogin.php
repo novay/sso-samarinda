@@ -47,7 +47,16 @@ class SSOAutoLogin
      */
     public function handleLogin($response)
     {
-        // 
+        $user = config('sso.model')::updateOrCreate([
+            'id'  => $response['data']['id'], 
+        ], [
+            'name' => $response['data']['name'],
+            'email' => $response['data']['email'], 
+            'password' => 'secret'
+        ]);
+
+        // \JWTAuth::fromUser($user);
+        auth()->loginUsingId($user->id);
     }
 
     /**

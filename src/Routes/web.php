@@ -6,4 +6,6 @@ Route::prefix('oauth/sso')->namespace('Novay\\SSO\\Http\\Controllers')->middlewa
 	Route::get('callback', 'OAuthController@callback');
 	
 	Route::get('logout', 'OAuthController@logout')->name('sso.logout');
+
+	Route::get('import/{type?}', 'ImportController@import')->name('sso.import');
 });

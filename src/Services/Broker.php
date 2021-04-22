@@ -188,4 +188,18 @@ class Broker extends SSOBroker
 
         return false;
     }
+
+    /**
+     * Getting user list from SSO based on client session.
+     *
+     * @return array
+     */
+    public function getUserList(string $type)
+    {
+        if (!isset($this->userList) || !$this->userList) {
+            $this->userList = $this->makeRequest('GET', 'userList', compact('type'));
+        }
+
+        return $this->userList;
+    }
 }
