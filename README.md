@@ -7,12 +7,16 @@
 
 Package ini berbasis pada [Simple PHP SSO skeleton](https://github.com/zefy/php-simple-sso) dan dibuat khusus agar dapat berjalan dan digunakan di framework Laravel.
 
+Teknologi Single-sign-on (sering disingkat menjadi SSO) adalah teknologi yang mengizinkan pengguna jaringan agar dapat mengakses aplikasi dalam jaringan hanya dengan menggunakan satu akun pengguna saja. Teknologi ini sangat diminati, khususnya dalam jaringan yang sangat besar dan bersifat heterogen (di saat sistem operasi serta aplikasi yang digunakan oleh komputer adalah berasal dari banyak vendor, dan pengguna dimintai untuk mengisi informasi dirinya ke dalam setiap platform yang berbeda tersebut yang hendak diakses oleh pengguna). Dengan menggunakan SSO, seorang pengguna hanya cukup melakukan proses autentikasi sekali saja untuk mendapatkan izin akses terhadap semua layanan yang terdapat di dalam jaringan.
+
 ### Requirements
 * Laravel 5.5+
 * PHP 7.1+
 
 ### How it works?
 Client visits Broker and unique token is generated. When new token is generated we need to attach Client session to his session in Broker so he will be redirected to Server and back to Broker at this moment new session in Server will be created and associated with Client session in Broker's page. When Client visits other Broker same steps will be done except that when Client will be redirected to Server he already use his old session and same session id which associated with Broker#1.
+
+![flow](https://sso.samarindakota.go.id/img/flow.jpg)
 
 # Installation
 
@@ -166,6 +170,8 @@ b) Logout
 ```html
 <a href="{{ route('sso.logout') }}">Logout</a>
 ```
+
+c) Manual Usage (Optional)
 
 Untuk penggunaan secara manual, Anda bisa menyisipkan potongan script berikut kedalam fungsi login dan logout pada class controller Anda.
 ```php
